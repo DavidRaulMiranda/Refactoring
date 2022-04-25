@@ -17,6 +17,7 @@ namespace PracticaRefactoring
             InitializeComponent();
         }
 
+        //Propiedad
         public string[] dades = new string[7];
         public List<Detall> detall;
         public string zona;
@@ -28,7 +29,8 @@ namespace PracticaRefactoring
             {
                 lblObservacions.Text = "Observacions: Pendent de confiormació des de la central";
             }
-
+            
+            //Hacer obj
             lblBrut.Text = dades[2];
             lblIva.Text = dades[3];
             lblDespesa.Text = dades[4];

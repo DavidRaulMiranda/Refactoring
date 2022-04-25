@@ -36,3 +36,15 @@ C:\Users\josep\source\repos\PracticaRefactoring\Refactoring\PracticaRefactoring\
 C:\Users\josep\source\repos\PracticaRefactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.CoreCompileInputs.cache
 C:\Users\josep\source\repos\PracticaRefactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.exe
 C:\Users\josep\source\repos\PracticaRefactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.pdb
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\bin\Debug\PracticaRefactoring.exe.config
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\bin\Debug\PracticaRefactoring.exe
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\bin\Debug\PracticaRefactoring.pdb
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.AssemblyReference.cache
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.frmComanda.resources
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.frmLogin.resources
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.frmResum.resources
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.Properties.Resources.resources
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.GenerateResource.cache
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.CoreCompileInputs.cache
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.exe
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.pdb

@@ -19,10 +19,8 @@ namespace PracticaRefactoring
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmComanda frm = new frmComanda();
+            frmComanda frm = new frmComanda(cmbZona.Text, txtNom.Text);
             frm.Show();
-            frm.zona = cmbZona.Text;
-            frm.representant = txtNom.Text;
         }
     }
 }

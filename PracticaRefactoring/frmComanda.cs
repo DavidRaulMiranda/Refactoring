@@ -6,10 +6,8 @@ namespace PracticaRefactoring
 {
     public partial class frmComanda : Form
     {
-
         List<Detall> Cistella = new List<Detall>();
         Comanda comanda = new Comanda();
-        bool podemFinalitzar = false;
         string numComanda;
         string[] DadesComanda;
         int contador = 0;
@@ -18,13 +16,16 @@ namespace PracticaRefactoring
         bool novaComanda = false;
 
 
-        public frmComanda()
-        {
-            InitializeComponent();
+        public frmComanda(string _representant, string _zona)
+        {  
+          representant = _representant;
+          zona= _zona;  
+          InitializeComponent();
         }
 
 
-        private void btnDetall_Click(object sender, EventArgs e)
+
+    private void btnDetall_Click(object sender, EventArgs e)
         {
             
 
@@ -86,7 +87,6 @@ namespace PracticaRefactoring
             importNet = comanda.Fercalculs(Cistella, "Total", cmbClients.Text);
             importNet = Math.Round(importNet, 2, MidpointRounding.AwayFromZero);
             lblTotal.Text = importNet.ToString();
-            podemFinalitzar = true;
             grpResum.Visible = true;
         }
 
@@ -110,8 +110,10 @@ namespace PracticaRefactoring
 
         private void cmbEstat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbEstat.SelectedIndex == 0) 
-                EstatEnEspera();
+            if (cmbEstat.SelectedIndex == 0)
+            {
+                DadesComanda[6] = "En espera";
+            }
             if (cmbEstat.SelectedIndex == 1)
                 EstatRetingut();
             if (cmbEstat.SelectedIndex == 2)
