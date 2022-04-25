@@ -89,11 +89,7 @@ namespace PracticaRefactoring
 
             if (tipusCalcul == "Brut")
             {
-                double importBrut = 0.0;
-                foreach (Detall lin in linia)
-                {
-                    importBrut = importBrut + (lin.quantitat * lin.preu);
-                }
+                double importBrut = NewMethod(linia);
                 return importBrut;
             }
 
@@ -158,6 +154,17 @@ namespace PracticaRefactoring
             }
             return 0;
 
+        }
+
+        private static double NewMethod(List<Detall> linia)
+        {
+            double importBrut = 0.0;
+            foreach (Detall lin in linia)
+            {
+                importBrut = importBrut + (lin.quantitat * lin.preu);
+            }
+
+            return importBrut;
         }
 
         public double getIva(double import)

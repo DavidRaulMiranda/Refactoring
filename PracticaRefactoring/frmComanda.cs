@@ -11,6 +11,7 @@ namespace PracticaRefactoring
         Comanda comanda = new Comanda();
         bool podemFinalitzar = false;
         string numComanda;
+        DadesComanda dadesComanda;
         string[] DadesComanda;
         int contador = 0;
         public string representant;
@@ -49,7 +50,7 @@ namespace PracticaRefactoring
             importBrut = comanda.Fercalculs(Cistella, "Brut", cmbClients.Text);
             importBrut = Math.Round(importBrut, 2, MidpointRounding.AwayFromZero);
             lblBrut.Text = importBrut.ToString();
-            DadesComanda[2] = importBrut.ToString();
+            dadesComanda.Brut= importBrut;
         }
 
         private void btnIVA_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace PracticaRefactoring
             iva = comanda.Fercalculs(Cistella, "Iva",  cmbClients.Text);
             iva = Math.Round(iva, 2, MidpointRounding.AwayFromZero);
             lblIva.Text = iva.ToString();
-            DadesComanda[3] = iva.ToString();
+            dadesComanda.Iva= iva;
         }
 
         private void btnDespesa_Click(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace PracticaRefactoring
             despesa = comanda.Fercalculs(Cistella, "Despesa", cmbClients.Text);
             despesa = Math.Round(despesa, 2, MidpointRounding.AwayFromZero);
             lblDespesa.Text = despesa.ToString();
-            DadesComanda[4] = despesa.ToString();
+            dadesComanda.Despesa = despesa;
         }
 
 
@@ -77,7 +78,7 @@ namespace PracticaRefactoring
             descompte = comanda.Fercalculs(Cistella, "Descompte", cmbClients.Text);
             descompte = Math.Round(descompte, 2, MidpointRounding.AwayFromZero);
             lbldescompte.Text = descompte.ToString();
-            DadesComanda[5] = descompte.ToString();
+            dadesComanda.Descompte = descompte.;
         }
 
         private void btnTotal_Click(object sender, EventArgs e)
@@ -94,18 +95,19 @@ namespace PracticaRefactoring
         {
             novaComanda = true;
             contador = contador  + 1;
+            dadesComanda = new DadesComanda();
             DadesComanda = new string[7];
             int dia = DateTime.Today.DayOfYear;
             numComanda = dia.ToString() + "-" + contador.ToString();
             lblComanda.Text = numComanda;
-            DadesComanda[0] = numComanda;
-            DadesComanda[1] = cmbClients.Text;
+            dadesComanda.Comanda = numComanda;
+            dadesComanda.Client= cmbClients.Text;
         }
 
         private void cmbClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(novaComanda)
-                DadesComanda[1] = cmbClients.Text;
+                dadesComanda.Client = cmbClients.Text;
         }
 
         private void cmbEstat_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,7 +141,7 @@ namespace PracticaRefactoring
 
         private void btnResum_Click(object sender, EventArgs e)
         {
-            frmResum frm = new frmResum();
+            frmResum frm = new frmResum(dadesComanda,Cistella,zona);
             frm.zona = zona;
             frm.detall = Cistella;
             frm.dades = DadesComanda;

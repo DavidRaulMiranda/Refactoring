@@ -12,36 +12,39 @@ namespace PracticaRefactoring
 {
     public partial class frmResum : Form
     {
-        public frmResum()
+        DadesComanda dadesComanda;
+        List<Detall> detall;
+        string zona;
+        public frmResum(DadesComanda _dadesComanda, List<Detall> _detall, string _zona)
         {
+            dadesComanda = _dadesComanda;
+            detall = _detall;
+            zona = _zona;
             InitializeComponent();
+
         }
-
-        public string[] dades = new string[7];
-        public List<Detall> detall;
-        public string zona;
-
-
         private void frmResum_Load(object sender, EventArgs e)
         {
+
             if (zona=="Insular")
             {
                 lblObservacions.Text = "Observacions: Pendent de confiormació des de la central";
             }
 
-            lblBrut.Text = dades[2];
-            lblIva.Text = dades[3];
-            lblDespesa.Text = dades[4];
-            lbldescompte.Text = dades[5];
+            lblComanda.Text = dadesComanda.Comanda;
+            lblClient.Text = dadesComanda.Client;
+            lblestat.Text = dadesComanda.Estat;
 
-            lblComanda.Text = dades[0];
-            lblClient.Text = dades[1];
-            lblestat.Text = dades[6];
-            double total = 0.0;
 
-            total = double.Parse(lblBrut.Text) + double.Parse(lblIva.Text)
-                    + double.Parse(lblDespesa.Text) - double.Parse(lbldescompte.Text);
-            lblTotal.Text = total.ToString();
+            lblBrut.Text = dadesComanda.Brut.ToString();
+            lblIva.Text = dadesComanda.Iva.ToString();
+            lblDespesa.Text = dadesComanda.Despesa.ToString();
+            lbldescompte.Text = dadesComanda.Descompte.ToString();
+
+            lblTotal.Text = (dadesComanda.Brut 
+                + dadesComanda.Iva
+                + dadesComanda.Despesa 
+                - dadesComanda.Descompte).ToString(); ;
 
             dtgProductes.DataSource = detall;
         }
