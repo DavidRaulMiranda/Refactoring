@@ -47,3 +47,4 @@ C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring
 C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.CoreCompileInputs.cache
 C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.exe
 C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.pdb
+C:\Users\Kuss\Documents\source\repos\refactoring\Refactoring\PracticaRefactoring\obj\Debug\PracticaRefactoring.csproj.AssemblyReference.cache

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dadesComanda.cs" />
     <Compile Include="Comanda.cs" />
     <Compile Include="Detall.cs" />
     <Compile Include="frmComanda.cs">

@@ -6,10 +6,10 @@ namespace PracticaRefactoring
 {
     public partial class frmComanda : Form
     {
+        DadesComanda dadesComanda;
         List<Detall> Cistella = new List<Detall>();
         Comanda comanda = new Comanda();
         string numComanda;
-        string[] DadesComanda;
         int contador = 0;
         public string representant;
         public string zona;
@@ -35,6 +35,7 @@ namespace PracticaRefactoring
             compra.quantitat = int.Parse(txtQuantitat.Text);
             Cistella.Add(compra);
 
+            dtgProductes.DataSource = null;
             dtgProductes.DataSource = Cistella;
 
             txtPreu.Text = "";
@@ -49,7 +50,7 @@ namespace PracticaRefactoring
             importBrut = comanda.Fercalculs(Cistella, "Brut", cmbClients.Text);
             importBrut = Math.Round(importBrut, 2, MidpointRounding.AwayFromZero);
             lblBrut.Text = importBrut.ToString();
-            DadesComanda[2] = importBrut.ToString();
+            dadesComanda.Brut = importBrut;
         }
 
         private void btnIVA_Click(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace PracticaRefactoring
             iva = comanda.Fercalculs(Cistella, "Iva",  cmbClients.Text);
             iva = Math.Round(iva, 2, MidpointRounding.AwayFromZero);
             lblIva.Text = iva.ToString();
-            DadesComanda[3] = iva.ToString();
+            dadesComanda.Iva = iva;
         }
 
         private void btnDespesa_Click(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace PracticaRefactoring
             despesa = comanda.Fercalculs(Cistella, "Despesa", cmbClients.Text);
             despesa = Math.Round(despesa, 2, MidpointRounding.AwayFromZero);
             lblDespesa.Text = despesa.ToString();
-            DadesComanda[4] = despesa.ToString();
+            dadesComanda.Despesa = despesa;
         }
 
 
@@ -77,7 +78,7 @@ namespace PracticaRefactoring
             descompte = comanda.Fercalculs(Cistella, "Descompte", cmbClients.Text);
             descompte = Math.Round(descompte, 2, MidpointRounding.AwayFromZero);
             lbldescompte.Text = descompte.ToString();
-            DadesComanda[5] = descompte.ToString();
+            dadesComanda.Descompte = descompte;
         }
 
         private void btnTotal_Click(object sender, EventArgs e)
@@ -93,48 +94,44 @@ namespace PracticaRefactoring
         {
             novaComanda = true;
             contador = contador  + 1;
-            DadesComanda = new string[7];
+            dadesComanda = new DadesComanda();
             int dia = DateTime.Today.DayOfYear;
             numComanda = dia.ToString() + "-" + contador.ToString();
             lblComanda.Text = numComanda;
-            DadesComanda[0] = numComanda;
-            DadesComanda[1] = cmbClients.Text;
+            dadesComanda.Comanda = numComanda;
+            dadesComanda.Client = cmbClients.Text;
         }
 
         private void cmbClients_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(novaComanda)
-                DadesComanda[1] = cmbClients.Text;
+                dadesComanda.Client = cmbClients.Text;
         }
 
         private void cmbEstat_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbEstat.SelectedIndex == 0)
             {
-                DadesComanda[6] = "En espera";
+                dadesComanda.Estat = "En espera";
             }
             else if (cmbEstat.SelectedIndex == 1)
             {
-                DadesComanda[6] = "Retinguda";
+                dadesComanda.Estat = "Retinguda";
             }else if (cmbEstat.SelectedIndex == 2)
             {
-                DadesComanda[6] = "Condicionada";
+                dadesComanda.Estat = "Condicionada";
             }
             else if (cmbEstat.SelectedIndex == 3)
             {
-                DadesComanda[6] = "Confirmada";
+                dadesComanda.Estat = "Confirmada";
             }
         }
 
         private void btnResum_Click(object sender, EventArgs e)
         {
-            frmResum frm = new frmResum();
-            frm.zona = zona;
-            frm.detall = Cistella;
-            frm.dades = DadesComanda;
+            frmResum frm = new frmResum(dadesComanda, Cistella, zona);
             frm.Show();
-            
-
+   
         }
 
         private void frmComanda_Load(object sender, EventArgs e)

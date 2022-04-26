@@ -29,27 +29,27 @@ namespace PracticaRefactoring
 
             if (tipusCalcul == "Descompte")
             {
-                importBrut = calcularBruto(linia, client);
+                importBrut = calcularBruto(linia);
                 descompte = getDescompteClient(importBrut, client);
                 return descompte;
             }
 
             if (tipusCalcul == "Iva")
             {
-                importBrut = getImportBrut(linia);
+                importBrut = calcularBruto(linia);
                 iva = getIva(importBrut);
                 return iva;
             }
 
             if (tipusCalcul == "Brut")
             {
-                importBrut = getImportBrut(linia);
+                importBrut = calcularBruto(linia);
                 return importBrut;
             }
 
             if (tipusCalcul == "Total")
             {
-                importBrut = getImportBrut(linia);
+                importBrut = calcularBruto(linia);
 
                 despesa = getDespesa(client, despesa, importBrut);
 
@@ -94,17 +94,6 @@ namespace PracticaRefactoring
             return despesa;
         }
 
-        private double getImportBrut(List<Detall> linia)
-        {
-            double importBrut = 0.0;
-            foreach (Detall lin in linia)
-            {
-                importBrut = importBrut + (lin.quantitat * lin.preu);
-            }
-
-            return importBrut;
-        }
-
         public double getIva(double import)
         {
             return import * iva;
@@ -115,10 +104,7 @@ namespace PracticaRefactoring
 
             double despesa = 0.0;
             double importBrut = 0.0;
-            foreach (Detall lin in linia)
-            {
-                importBrut = importBrut + (lin.quantitat * lin.preu);
-            }
+            importBrut = calcularBruto(linia);
 
             if (client.EndsWith("B"))
             {
@@ -147,7 +133,7 @@ namespace PracticaRefactoring
             return despesa;
         }
 
-        public double calcularBruto(List<Detall> linia, string client)
+        public double calcularBruto(List<Detall> linia)
         {
             double importBrut = 0.0;
 
