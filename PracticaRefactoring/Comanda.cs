@@ -15,9 +15,11 @@ namespace PracticaRefactoring
 
         public double Fercalculs(List<Detall> linia, string tipusCalcul, string client)
         {
-            double despesa;
+            double despesa = 0.0;
             double descompte;
             double importBrut;
+            double iva;
+            double importNet;
 
             if (tipusCalcul == "Despesa")
             {
@@ -27,14 +29,15 @@ namespace PracticaRefactoring
 
             if (tipusCalcul == "Descompte")
             {
-                descompte = getDescompte(linia, client);
+                importBrut = calcularBruto(linia, client);
+                descompte = getDescompteClient(importBrut, client);
                 return descompte;
             }
 
             if (tipusCalcul == "Iva")
             {
                 importBrut = getImportBrut(linia);
-                double iva = getIva(importBrut);
+                iva = getIva(importBrut);
                 return iva;
             }
 
@@ -46,21 +49,13 @@ namespace PracticaRefactoring
 
             if (tipusCalcul == "Total")
             {
-                double importNet = 0.0;
                 importBrut = getImportBrut(linia);
-                despesa = 0.0;
 
                 despesa = getDespesa(client, despesa, importBrut);
 
-                double iva = getIva(importBrut);
+                iva = getIva(importBrut);
 
-                descompte = 0.0;
-
-                bool retorna = false;
-                if (retorna)
-                    retorna = false;
-
-                descompte = getDescompte(importBrut, client);
+                descompte = getDescompteClient(importBrut, client);
 
                 importNet = importBrut + iva + despesa - descompte;
                 return importNet;
@@ -115,29 +110,6 @@ namespace PracticaRefactoring
             return import * iva;
         }
 
-        public double getDescompte(double import, double dto)
-        {
-            return import * dto;
-        }
-
-        public double getDescompte(double importBrut, string client)
-        {
-            double descompte = 0.0;
-
-            if (client.EndsWith("A"))
-            {
-                descompte = importBrut * cincPerCent;
-            }else if (client.EndsWith("B"))
-            {
-                descompte = importBrut * tresPerCent;
-            }else if (client.EndsWith("C"))
-            {
-                descompte = importBrut * uPerCent;
-            }
-
-            return descompte;
-        }
-
         public double getDespesa(List<Detall> linia, string client)
         {
 
@@ -175,18 +147,37 @@ namespace PracticaRefactoring
             return despesa;
         }
 
-        public double getDescompte(List<Detall> linia, string client)
+        public double calcularBruto(List<Detall> linia, string client)
         {
             double importBrut = 0.0;
+
             foreach (Detall lin in linia)
             {
                 importBrut = importBrut + (lin.quantitat * lin.preu);
             }
 
-            bool retorna = false;
-            if (retorna) retorna = false;
-
-            return getDescompte(importBrut, client);
+            return importBrut;
         }
+
+        public double getDescompteClient(double importBrut, string client)
+        {
+            double descompte = 0.0;
+
+            if (client.EndsWith("A"))
+            {
+                descompte = importBrut * cincPerCent;
+            }
+            else if (client.EndsWith("B"))
+            {
+                descompte = importBrut * tresPerCent;
+            }
+            else if (client.EndsWith("C"))
+            {
+                descompte = importBrut * uPerCent;
+            }
+
+            return descompte;
+        }
+
     }
 }

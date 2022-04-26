@@ -35,7 +35,6 @@ namespace PracticaRefactoring
             compra.quantitat = int.Parse(txtQuantitat.Text);
             Cistella.Add(compra);
 
-            dtgProductes.DataSource = null;
             dtgProductes.DataSource = Cistella;
 
             txtPreu.Text = "";
@@ -46,7 +45,7 @@ namespace PracticaRefactoring
 
         private void btnBrut_Click(object sender, EventArgs e)
         {
-            double importBrut = 0.0;
+            double importBrut;
             importBrut = comanda.Fercalculs(Cistella, "Brut", cmbClients.Text);
             importBrut = Math.Round(importBrut, 2, MidpointRounding.AwayFromZero);
             lblBrut.Text = importBrut.ToString();
@@ -55,7 +54,7 @@ namespace PracticaRefactoring
 
         private void btnIVA_Click(object sender, EventArgs e)
         {
-            double iva = 0.0;
+            double iva;
             iva = comanda.Fercalculs(Cistella, "Iva",  cmbClients.Text);
             iva = Math.Round(iva, 2, MidpointRounding.AwayFromZero);
             lblIva.Text = iva.ToString();
@@ -64,7 +63,7 @@ namespace PracticaRefactoring
 
         private void btnDespesa_Click(object sender, EventArgs e)
         {
-            double despesa=0.0;
+            double despesa;
             despesa = comanda.Fercalculs(Cistella, "Despesa", cmbClients.Text);
             despesa = Math.Round(despesa, 2, MidpointRounding.AwayFromZero);
             lblDespesa.Text = despesa.ToString();
@@ -74,7 +73,7 @@ namespace PracticaRefactoring
 
         private void btnDescompte_Click(object sender, EventArgs e)
         {
-            double descompte = 0.0;
+            double descompte;
             descompte = comanda.Fercalculs(Cistella, "Descompte", cmbClients.Text);
             descompte = Math.Round(descompte, 2, MidpointRounding.AwayFromZero);
             lbldescompte.Text = descompte.ToString();
@@ -83,7 +82,7 @@ namespace PracticaRefactoring
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
-            double importNet = 0.0;
+            double importNet;
             importNet = comanda.Fercalculs(Cistella, "Total", cmbClients.Text);
             importNet = Math.Round(importNet, 2, MidpointRounding.AwayFromZero);
             lblTotal.Text = importNet.ToString();
@@ -114,29 +113,17 @@ namespace PracticaRefactoring
             {
                 DadesComanda[6] = "En espera";
             }
-            if (cmbEstat.SelectedIndex == 1)
-                EstatRetingut();
-            if (cmbEstat.SelectedIndex == 2)
-                EstatCondicionat();
-            if (cmbEstat.SelectedIndex == 3)
-                EstatConfirmat();
-        }
-
-        private void EstatEnEspera()
-        {
-            DadesComanda[6] = "En espera";
-        }
-        private void EstatRetingut()
-        {
-            DadesComanda[6] = "Retinguda";
-        }
-        private void EstatCondicionat()
-        {
-            DadesComanda[6] = "Condicionada";
-        }
-        private void EstatConfirmat()
-        {
-            DadesComanda[6] = "Confirmada";
+            else if (cmbEstat.SelectedIndex == 1)
+            {
+                DadesComanda[6] = "Retinguda";
+            }else if (cmbEstat.SelectedIndex == 2)
+            {
+                DadesComanda[6] = "Condicionada";
+            }
+            else if (cmbEstat.SelectedIndex == 3)
+            {
+                DadesComanda[6] = "Confirmada";
+            }
         }
 
         private void btnResum_Click(object sender, EventArgs e)
